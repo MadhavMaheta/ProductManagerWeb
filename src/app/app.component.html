@@ -1,0 +1,56 @@
+<!-- <mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="isExpanded = !isExpanded">
+        <mat-icon>menu</mat-icon>
+    </button>
+    <h1 class="example-app-name">Product Manager</h1>
+</mat-toolbar>
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" (mouseenter)="mouseenter()"
+        (mouseleave)="mouseleave()">
+        <mat-nav-list>
+            <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
+                <mat-icon>list</mat-icon><span class="full-width" *ngIf="isExpanded || isShowing">Products</span>
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <div class="example-sidenav-content">
+        <router-outlet></router-outlet>
+    </div>
+
+</mat-sidenav-container> -->
+
+<div class="h-100">
+  <mat-toolbar color="primary" *ngIf="isCheckoutRoute()">
+    <mat-toolbar-row>
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" color="white">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>{{title}}</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-sidenav-container class="example-container">
+    <mat-sidenav #drawer mode="side" opened role="navigation">
+      <mat-nav-list *ngIf="isCheckoutRoute()">
+        <a mat-list-item routerLink=''>
+          <mat-icon>home</mat-icon> &nbsp; Home
+        </a>
+        <a mat-list-item routerLink='/products'>
+          <mat-icon>list</mat-icon> &nbsp; Products
+        </a>
+        <a mat-list-item routerLink='/category'>
+          <mat-icon>list</mat-icon> &nbsp; Categories
+        </a>
+        <a mat-list-item (click)="LogOut()">
+          <mat-icon>exit_to_app</mat-icon> &nbsp; LogOut
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+<!-- <div *ngIf="!isCheckoutRoute()">
+  <app-login></app-login>
+</div> -->

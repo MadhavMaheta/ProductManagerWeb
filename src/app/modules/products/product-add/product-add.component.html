@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <form [formGroup]="productFormGroup" autocomplete="off" class="mt-5" (ngSubmit)="SaveProduct()">
+            <mat-form-field hidden class="form-element">
+                <input matInput hidden formControlName="id" [(ngModel)]="objProducts.id">
+            </mat-form-field>
+            <div class="row bgGray">
+                <div class="col-md-12 text-center">
+                    <h1>Save Product</h1>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <mat-form-field class="form-element w-100">
+                        <input matInput placeholder="Product Name" formControlName="name"
+                            [(ngModel)]="objProducts.name">
+                        <mat-error
+                            *ngIf="this.isSubmitted && !productFormGroup.controls['name'].valid && productFormGroup.controls['name'].touched">
+                            {{ titleAlert }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <mat-form-field class="form-element w-100">
+                        <input matInput placeholder="Description" formControlName="description"
+                            [(ngModel)]="objProducts.description">
+                        <mat-error
+                            *ngIf="!productFormGroup.controls['description'].valid && productFormGroup.controls['description'].touched">
+                            {{ titleAlert }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <mat-form-field class="form-element w-100">
+                        <input type="number" matInput placeholder="Price" formControlName="price"
+                            [(ngModel)]="objProducts.price">
+                        <mat-error
+                            *ngIf="!productFormGroup.controls['price'].valid && productFormGroup.controls['price'].touched">
+                            {{ titleAlert }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <mat-checkbox class="example-margin" formControlName="inStock" [(ngModel)]="objProducts.inStock">In
+                        Stock?</mat-checkbox>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <mat-form-field class="form-element w-100" appearance="fill">
+                        <mat-label>Category</mat-label>
+                        <mat-select formControlName="category" [(ngModel)]="objProducts.categoryId">
+                            <mat-option *ngFor="let catOption of categoriesList" [value]="catOption.id">{{
+                                catOption.name }}</mat-option>
+                        </mat-select>
+                        <mat-error
+                            *ngIf="!productFormGroup.controls['category'].valid && productFormGroup.controls['category'].touched">
+                            {{ titleAlert }}
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-12 mb-3 text-center">
+                    <button mat-raised-button color="accent" type="submit">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>

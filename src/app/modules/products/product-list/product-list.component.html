@@ -1,0 +1,76 @@
+<br />
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+        <!-- <mat-form-field>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+        </mat-form-field> -->
+    </div>
+    <div class="col-md-5">
+        <button mat-raised-button color="accent" style="float:right" routerLink="add"
+            routerLinkActive="active">Add</button>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+<!-- <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <table mat-table matSort [dataSource]="dataSource" (matSortChange)="announceSortChange($event)"
+            class="mat-elevation-z8 w-100">
+
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> id </th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> name </th>
+                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> description </th>
+                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="price">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> price </th>
+                <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="inStock">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> InStock </th>
+                <td mat-cell *matCellDef="let element"> {{element.inStock}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef> Action </th>
+                <td mat-cell *matCellDef="let element">
+                    <button [routerLink]="['edit', element.id]" routerLinkActive="active" mat-icon-button color="primary" aria-label="Edit">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" aria-label="Delete">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+    <div class="col-md-1"></div>
+</div> -->
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <app-mat-table-common [columns]="columns" [buttons]="buttons" [data]="products" [filter]="true"
+            [filterPlaceholder]="'Filter any value'" [pagination]="[5, 25, 100]" [pageSize]="5" [tableMinWidth]="400"
+            (buttonClick)="buttonClick($event)" (pageEventGenericTable)="pageEventGenericTable($event)">
+        </app-mat-table-common>
+    </div>
+    <div class="col-md-1"></div>
+</div>
