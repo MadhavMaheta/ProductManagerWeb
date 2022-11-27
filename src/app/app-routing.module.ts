@@ -14,7 +14,7 @@ import { AuthGuardService } from './helper/auth-guard.service';
 import { RegisterComponent } from './modules/auth/register/register.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'test', component: TestingComponentComponent },
   { path: 'test1', component: MatTableCommonComponent },

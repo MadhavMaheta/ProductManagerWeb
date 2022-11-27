@@ -17,4 +17,9 @@ export class AuthService {
     return this.http.post<Token>(this.rootURL + 'Auth', formData, httpOptions);
   }
 
+  Register(formData: any){
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    return this.http.post<any>(this.rootURL + 'Users/Register', formData, httpOptions);
+  }
+
 }

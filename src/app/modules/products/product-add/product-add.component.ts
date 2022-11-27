@@ -128,5 +128,5 @@ export class ProductAddComponent implements OnInit {
         }
       },
     });
-  }s
+  }
 }
