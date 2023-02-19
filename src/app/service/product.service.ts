@@ -15,21 +15,21 @@ export class ProductService {
 
   GetProducts() {
     const httpOptions = { headers: new HttpHeaders({'Authorization':'Bearer ' + this.token }) };
-    return this.http.get<Products[]>(this.rootURL + 'Products',httpOptions);
+    return this.http.get<Products[]>(this.rootURL + 'Products/GetProducts',httpOptions);
   }
 
   GetProduct(id: number): Observable<any> {
     const httpOptions = { headers: new HttpHeaders({'Authorization':'Bearer ' + this.token }) };
-    return this.http.get<Products>(this.rootURL + 'Products/' + id,httpOptions);
+    return this.http.get<Products>(this.rootURL + 'Products/GetProduct/' + id,httpOptions);
   }
 
   AddProduct(formData: any): Observable<any> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json','Authorization':'Bearer ' + this.token }) };
-    return this.http.post<any>(this.rootURL + 'Products', formData, httpOptions);
+    return this.http.post<any>(this.rootURL + 'Products/PostProduct', formData, httpOptions);
   }
 
   EditProduct(formData: any): Observable<any> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json','Authorization':'Bearer ' + this.token }) };
-    return this.http.put<any>(this.rootURL + 'Products/' + formData.ID, formData, httpOptions);
+    return this.http.put<any>(this.rootURL + 'Products/PutProduct' + formData.ID, formData, httpOptions);
   }
 }

@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.Login(objCategory).subscribe(res => {
       localStorage.setItem('currentUserToken', res.authToken);
-      this.router.navigate(['home']);
-    }, err => { debugger; console.log(err); });
+      this.router.navigate(['/products']);
+    }, err => { console.log(err); });
   }
 }

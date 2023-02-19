@@ -1,0 +1,40 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { MatTableCommonComponent } from './mat-table-common/mat-table-common.component';
+import {MatTableModule } from '@angular/material/table';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule } from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import {MatSortModule} from '@angular/material/sort';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { RouterModule } from '@angular/router';
+
+
+@NgModule({
+  declarations: [
+    SidebarComponent,
+    MatTableCommonComponent
+  ],
+  imports: [
+    CommonModule,
+    MatTableModule,
+    MatToolbarModule,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatListModule,
+    MatSortModule,
+    MatPaginatorModule,
+    RouterModule
+  ],
+  exports:[
+    SidebarComponent,
+    MatTableCommonComponent
+  ]
+})
+export class SharedModule { }

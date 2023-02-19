@@ -1,0 +1,22 @@
+<!-- <div class="sidebar-wrapper">
+    <ul class="nav">
+        <li routerLinkActive="active" class="nav-item">
+            <a routerLink='/products'>Products</a>
+        </li>
+    </ul>
+</div> -->
+
+<mat-nav-list>
+    <a mat-list-item routerLink=''>
+      <mat-icon>home</mat-icon> &nbsp; Home
+    </a>
+    <a mat-list-item routerLink='/products'>
+      <mat-icon>list</mat-icon> &nbsp; Products1
+    </a>
+    <a mat-list-item routerLink='/category'>
+      <mat-icon>list</mat-icon> &nbsp; Categories
+    </a>
+    <a mat-list-item (click)="LogOut()">
+      <mat-icon>exit_to_app</mat-icon> &nbsp; LogOut
+    </a>
+</mat-nav-list>

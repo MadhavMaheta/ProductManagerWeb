@@ -1,6 +1,6 @@
+import { Component, OnInit,ViewChild, AfterViewInit } from '@angular/core';
 import { TableColumn } from 'src/app/models/table-column';
 import { TableButton } from 'src/app/models/table-button';
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort, Sort } from '@angular/material/sort';
@@ -61,6 +61,5 @@ export class CategoryListComponent implements OnInit {
   }
 
   pageEventGenericTable(result : any){
-    debugger;
   }
 }

@@ -10,7 +10,6 @@ export class AuthGuardService {
   constructor(public jwtHelper: JwtHelperService, public router: Router) { }
 
   canActivate(): boolean {
-    debugger;
     if (!this.isTokenAuthenticated()) {
       this.router.navigate(['login']);
       return false;

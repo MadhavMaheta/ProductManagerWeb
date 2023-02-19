@@ -20,7 +20,7 @@
 
 </mat-sidenav-container> -->
 
-<div class="h-100">
+<!-- <div class="h-100">
   <mat-toolbar color="primary" *ngIf="isCheckoutRoute()">
     <mat-toolbar-row>
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" color="white">
@@ -50,7 +50,9 @@
       <router-outlet></router-outlet>
     </mat-sidenav-content>
   </mat-sidenav-container>
-</div>
+</div> -->
+
+<router-outlet></router-outlet>
 <!-- <div *ngIf="!isCheckoutRoute()">
   <app-login></app-login>
 </div> -->

@@ -54,7 +54,6 @@ export class MatTableCommonComponent implements OnChanges {
   }
 
   pageChanged(event: PageEvent) {
-    debugger;
     this.pageEventGenericTable.emit(event);
     // this.pageSize = event.pageSize;
     // this.currentPage = event.pageIndex;
