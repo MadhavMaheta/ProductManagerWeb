@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Products } from 'src/app/models/product';
+import { ProductService } from 'src/app/service/product.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  products: Products[] = [];
+  constructor(public productService: ProductService, private sanitizer: DomSanitizer) { }
+  alterUrl : '/assets/AlterImage.jpg'
+
 
   ngOnInit(): void {
+    this.GetProducts();
   }
 
+  async GetProducts() {
+    this.productService.GetProductsWithImage().subscribe(
+      res => { 
+        this.products = res as Products[];        
+        this.products.forEach((data) =>{
+          if(data.imageData.length > 0){
+            let objectURL = 'data:image/png;base64,' + data.imageData;
+            data.imageData = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+          }
+          else{
+            data.imageData =  './src/assets/AlterImage.jpg'
+          }
+        });
+      },
+      error => { console.log(error); });
+  }
 }

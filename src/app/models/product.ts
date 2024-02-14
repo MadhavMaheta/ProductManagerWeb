@@ -5,4 +5,5 @@ export interface Products{
     price:number;
     inStock:boolean;
     categoryId:number;
+    imageData?:any;
 }

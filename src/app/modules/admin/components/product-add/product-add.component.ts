@@ -8,6 +8,7 @@ import { ConfirmationDialogComponent } from 'src/app/layout/confirmation-dialog/
 import { CategoryService } from 'src/app/service/category.service';
 import { Category } from 'src/app/models/category';
 import { AlertDialogComponent } from 'src/app/layout/alert-dialog/alert-dialog.component';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-add',
@@ -19,6 +20,8 @@ export class ProductAddComponent implements OnInit {
   isSubmitted = false;
   titleAlert: string = 'This field is required';
   id: number = 0;
+  myFiles : any[] = [];
+  thumbnail: any;
   objProducts: Products = {
     id: 0,
     description: '',
@@ -30,7 +33,7 @@ export class ProductAddComponent implements OnInit {
   categoriesList: Category[];
   
   constructor(private _Activatedroute: ActivatedRoute, public productService: ProductService, private formBuilder: FormBuilder,
-    public categoryService: CategoryService, private dialog: MatDialog) { }
+    public categoryService: CategoryService, private dialog: MatDialog, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
 
@@ -39,6 +42,7 @@ export class ProductAddComponent implements OnInit {
     });
 
     this.GetCategories();
+    this.GetProductImage();
 
     if (this.id > 0) {
       this.GetProductById(this.id);
@@ -58,6 +62,16 @@ export class ProductAddComponent implements OnInit {
   async GetCategories() {
     this.categoryService.GetCategories().subscribe(
       res => { this.categoriesList = res as Category[]; },
+      error => { console.log(error); });
+  }
+
+
+  async GetProductImage() {
+    this.productService.GetProductImage(this.id).subscribe(
+      res => { 
+        let objectURL = 'data:image/png;base64,' + res;
+        this.thumbnail = this.sanitizer.bypassSecurityTrustUrl(objectURL);
+      },
       error => { console.log(error); });
   }
 
@@ -128,5 +142,23 @@ export class ProductAddComponent implements OnInit {
         }
       },
     });
+  }
+
+  ReceiveImage(e){
+    this.myFiles = [];
+    for (var i = 0; i < e.target.files.length; i++) {  
+      this.myFiles.push(e.target.files[i]);  
+    }  
+  }
+
+  UploadImge(){ 
+    let fileToUpload = <File>this.myFiles[0];
+    const formDataImage = new FormData();
+    formDataImage.append('file', fileToUpload, fileToUpload.name);
+
+    this.productService.UploadProductImage(this.id,formDataImage).subscribe(res => {  
+      this.openAlertDialog("Product image added successfully","OK");
+      this.GetProductImage();
+    }, err => { console.log(err) });
   }
 }

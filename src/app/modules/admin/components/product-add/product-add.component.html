@@ -61,6 +61,25 @@
                 </div>
             </div>
         </form>
+
+        <br/>
+        <br/>
+
+        <form autocomplete="off" class="mt-5">
+        <input placeholder="Product Name" formControlName="name" type="file" (change)="ReceiveImage($event)"/>
+        <button mat-raised-button color="accent" type="button" (click)="UploadImge()">Upload Product Image</button>
+        </form>
+
+        <br/>
+        <p> Preview Image</p>
+        <br/>
+        <img [src]="thumbnail" alt="Product Image" height="80px" />
+
+        <!-- <mat-form-field class="form-element w-100">
+            <input matInput placeholder="Product Name" formControlName="name" type="file"/>
+            <button mat-raised-button color="accent" type="button" (click)="UploadImge()">Upload Product Image</button>
+        </mat-form-field> -->
+
     </div>
     <div class="col-md-3"></div>
 </div>

@@ -10,14 +10,17 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import {MatSortModule} from '@angular/material/sort';
+import {MatProgressSpinnerModule }  from '@angular/material/progress-spinner';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { RouterModule } from '@angular/router';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
     SidebarComponent,
-    MatTableCommonComponent
+    MatTableCommonComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
@@ -30,11 +33,13 @@ import { RouterModule } from '@angular/router';
     MatListModule,
     MatSortModule,
     MatPaginatorModule,
-    RouterModule
+    RouterModule,
+    MatProgressSpinnerModule
   ],
   exports:[
     SidebarComponent,
-    MatTableCommonComponent
+    MatTableCommonComponent,
+    NavbarComponent
   ]
 })
 export class SharedModule { }

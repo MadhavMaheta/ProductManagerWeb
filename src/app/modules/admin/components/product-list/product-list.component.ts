@@ -51,8 +51,8 @@ export class ProductListComponent {
   }
 
   async GetProducts() {
-    this.productService.GetProducts().subscribe(
-      res => { this.products = res as Products[]; this.dataSource = new MatTableDataSource(res as Products[]); this.dataSource.paginator = this.paginator; },
+    this.productService.GetProducts().subscribe( 
+      res => { debugger; this.products = res as Products[]; this.dataSource = new MatTableDataSource(res as Products[]); this.dataSource.paginator = this.paginator; },
       error => { console.log(error); });
   }
 

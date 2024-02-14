@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CategoryService {
-  readonly rootURL = "https://localhost:7175/api/";
+  readonly rootURL = "http://localhost:5241/api/";
   constructor(private http: HttpClient) { };
   readonly token = localStorage.getItem('currentUserToken');
 

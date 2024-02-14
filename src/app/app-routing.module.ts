@@ -6,6 +6,7 @@ import { LoginComponent } from './modules/auth/login/login.component';
 import { AuthService } from './service/auth.service';
 import { AuthGuardService } from './helper/auth-guard.service';
 import { RegisterComponent } from './modules/auth/register/register.component';
+import { MyAccountComponent } from './modules/components/my-account/my-account.component';
 
 const routes: Routes = [
   { 
@@ -13,6 +14,7 @@ const routes: Routes = [
     loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule),
     canActivate: [AuthGuardService]
   },
+  { path: 'account', component: MyAccountComponent,canActivate: [AuthGuardService] },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

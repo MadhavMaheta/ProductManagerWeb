@@ -37,13 +37,17 @@ export class LoginComponent implements OnInit {
     }
 
     var objCategory = {
-      Name: this.loginFormGroup.value.name,
-      Password: this.loginFormGroup.value.password,
+      id:0,
+      username: this.loginFormGroup.value.name,
+      password: this.loginFormGroup.value.password,
+      role:"Admin",
+      roleId:0
     };
 
     this.authService.Login(objCategory).subscribe(res => {
-      localStorage.setItem('currentUserToken', res.authToken);
-      this.router.navigate(['/products']);
+      debugger;
+      localStorage.setItem('currentUserToken', res.jwtToken);
+      this.router.navigate(['']);
     }, err => { console.log(err); });
   }
 }

@@ -22,6 +22,11 @@ import { LoginComponent } from './modules/auth/login/login.component';
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 import { RegisterComponent } from './modules/auth/register/register.component';
 import { SharedModule } from './modules/shared/shared.module';
+import { MyAccountComponent } from './modules/components/my-account/my-account.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoaderInterceptorInterceptor } from './interceptor/loader-interceptor.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -31,6 +36,7 @@ import { SharedModule } from './modules/shared/shared.module';
     RegisterComponent,
     ConfirmationDialogComponent,
     AlertDialogComponent,
+    MyAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -48,10 +54,17 @@ import { SharedModule } from './modules/shared/shared.module';
     MatPaginatorModule,
     ReactiveFormsModule,
     MaterialModule,
-    SharedModule
+    SharedModule,
+    MatProgressSpinnerModule,
+    NgxSpinnerModule
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptorInterceptor,
+      multi: true
+    },
     JwtHelperService
 ],
   bootstrap: [AppComponent],

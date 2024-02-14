@@ -1,0 +1,10 @@
+<div class="row">
+    <div class="col-md-3" *ngFor="let item of products">
+        <mat-card>
+            <mat-card-content> <img *ngIf="item.imageData != null" height="180px" width="180px" [src]="item.imageData" alt="/assets/AlterImage.jpg" /></mat-card-content>  
+            <mat-card-content> <img *ngIf="item.imageData == null" height="180px" width="180px" src="/assets/AlterImage.jpg" /></mat-card-content>  
+            <mat-card-footer>{{item.name}}</mat-card-footer>
+        </mat-card>
+        <br/>
+    </div>  
+</div>  

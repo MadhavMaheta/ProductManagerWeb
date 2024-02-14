@@ -6,12 +6,13 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { CategoryAddComponent } from './components/category-add/category-add.component';
+import { HomeComponent } from '../dashboard/home/home.component';
 
 const routes: Routes = [{
   path: '',
-  component: LayoutComponent,
+  //component: LayoutComponent,
   children: [
-  { path: '', component: LayoutComponent },
+  { path: '', component: HomeComponent },
   { path: 'products', component: ProductListComponent },
   { path: 'products/add', component: ProductAddComponent },
   { path: 'products/edit/:id', component: ProductAddComponent },

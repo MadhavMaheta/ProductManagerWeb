@@ -38,6 +38,7 @@ export class RegisterComponent implements OnInit {
     };
 
     this.authService.Register(objRegister).subscribe(res => {
+      this.registerFormGroup.reset();
       this.openAlertDialog("Registered successfully","OK");
     }, err => { console.log(err); });
   }
