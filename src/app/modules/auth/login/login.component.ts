@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { first, map } from 'rxjs';
 import { Login } from 'src/app/models/login';
 import { AuthService } from 'src/app/service/auth.service';
+import { MatDialog} from '@angular/material/dialog';
+import { AlertDialogComponent } from 'src/app/layout/alert-dialog/alert-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +22,7 @@ export class LoginComponent implements OnInit {
     name: '',
     password: ''
   };
-  constructor(public authService: AuthService, private formBuilder: FormBuilder,private router: Router) { }
+  constructor(public authService: AuthService, private formBuilder: FormBuilder,private router: Router,private dialog: MatDialog) { }
 
   ngOnInit() {
     this.loginFormGroup = this.formBuilder.group(
@@ -45,9 +47,21 @@ export class LoginComponent implements OnInit {
     };
 
     this.authService.Login(objCategory).subscribe(res => {
-      debugger;
       localStorage.setItem('currentUserToken', res.jwtToken);
+      localStorage.setItem('loggedInUserId', res.userId.toString());
+      localStorage.setItem('loggedInUserRole', res.roleName);
       this.router.navigate(['']);
-    }, err => { console.log(err); });
+    }, err => { this.openAlertDialog("User name or password incorrect","Close"); });
+  }
+
+  openAlertDialog(message : string, buttonText: string) {
+    const dialogRef = this.dialog.open(AlertDialogComponent,{
+      data:{
+        message: message,
+        buttonText: {
+          cancel: buttonText
+        }
+      },
+    });
   }
 }

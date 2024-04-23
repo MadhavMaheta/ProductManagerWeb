@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { AlertDialogComponent } from 'src/app/layout/alert-dialog/alert-dialog.component';
 import { AuthService } from 'src/app/service/auth.service';
 
@@ -11,7 +12,7 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(public authService: AuthService,private formBuilder: FormBuilder,private dialog: MatDialog) { }
+  constructor(public authService: AuthService,private formBuilder: FormBuilder,private dialog: MatDialog,private router: Router) { }
   registerFormGroup: FormGroup;
   titleAlert: string = 'This field is required';
   isSubmitted = false;
@@ -51,6 +52,13 @@ export class RegisterComponent implements OnInit {
           cancel: buttonText
         }
       },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      debugger;
+      if (result === 'close') {
+        this.router.navigate(['login']);
+      }
     });
   }
 }

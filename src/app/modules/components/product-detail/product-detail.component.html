@@ -1,0 +1,33 @@
+<div class="row">
+    <br />
+    <br />
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+        <div class="bg-image hover-overlay ripple">
+            <img [src]="thumbnail" class="img-fluid" />
+            <a href="#!">
+                <div class="mask" style="background-color: rgba(57, 192, 237, 0.2);"></div>
+            </a>
+        </div>
+        <div class="col-md-5">
+            <h4>{{objProducts.name}}</h4>
+            <h4>Rs {{objProducts.price}}</h4>
+            <h4>Description: {{objProducts.description}}</h4>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-2">
+        <div id="outer">
+            <div class="inner"><button class="btn btn-warning" [disabled]="this.isDecrementDisabled" (click)="decrement()">-</button></div>
+            <div class="inner"><h2>{{quantityCount}}</h2></div>
+            <div class="inner"><button type="submit" class="btn btn-success" (click)="increment()" >+</button></div>
+        </div> 
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-2"> <button type="button" class="btn btn-primary" (click)="Checkout()" mdbRipple>Buy Now</button></div>
+    <div class="col-md-2"><button type="button" class="btn btn-warning" mdbRipple>Add to Cart</button></div>
+</div>

@@ -15,6 +15,7 @@ export class AuthService {
   constructor(private http: HttpClient) { };
  
   Login(formData: any){
+    debugger;
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     return this.http.post<Token>(this.rootURL + 'auth', formData, httpOptions);
   }
@@ -26,7 +27,7 @@ export class AuthService {
 
   GetAccountData(id : number){
     const httpOptions = { headers: new HttpHeaders({ 'Authorization':'Bearer ' + this.token }) };
-    return this.http.get<User>(this.rootURL + 'User/GetUser/'+1, httpOptions);
+    return this.http.get<User>(this.rootURL + 'User/GetUser/'+id, httpOptions);
   }
 
 }

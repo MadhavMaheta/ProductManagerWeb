@@ -1,6 +1,6 @@
-<div class="row">
-    <div class="col-md-3" *ngFor="let item of products">
-        <mat-card>
+<div class="row mt-2" style="margin-left: 2px;">
+    <div class="col-md-2" id="productItem" *ngFor="let item of products">
+        <mat-card (click)="RouteToProductDetail(item.id)">
             <mat-card-content> <img *ngIf="item.imageData != null" height="180px" width="180px" [src]="item.imageData" alt="/assets/AlterImage.jpg" /></mat-card-content>  
             <mat-card-content> <img *ngIf="item.imageData == null" height="180px" width="180px" src="/assets/AlterImage.jpg" /></mat-card-content>  
             <mat-card-footer>{{item.name}}</mat-card-footer>

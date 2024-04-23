@@ -16,10 +16,10 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 //   showSubSubMenu: boolean = false;
 //   isSidebarPinned = false;
 //   isSidebarToggeled = false;
-  
+
 //   constructor(private router: Router){
 //   }
-  
+
 //   mouseenter() {
 //     if (!this.isExpanded) {
 //       this.isShowing = true;
@@ -63,18 +63,18 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 //   }
 // }
 
-export class AppComponent{
+export class AppComponent {
   title = 'material-responsive-sidenav';
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
-  isMobile= true;
+  isMobile = true;
   isCollapsed = true;
 
-  constructor(private observer: BreakpointObserver,private router: Router) {}
+  constructor(private observer: BreakpointObserver, private router: Router) { }
 
   ngOnInit() {
     this.observer.observe(['(max-width: 800px)']).subscribe((screenSize) => {
-      if(screenSize.matches){
+      if (screenSize.matches) {
         this.isMobile = true;
       } else {
         this.isMobile = false;
@@ -82,17 +82,26 @@ export class AppComponent{
     });
   }
 
-    isCheckoutRoute() {
-		if (localStorage.getItem('currentUserToken') != null) {
-			return true;
-		}
-    else{
+  isCheckoutRoute() {
+    if (localStorage.getItem('currentUserToken') != null) {
+      return true;
+    }
+    else {
       return false;
     }
-	}
+  }
+
+  isCheckSidebarVisiblity(){
+    if (localStorage.getItem('currentUserToken') != null && localStorage.getItem("loggedInUserRole") === "Admin") {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 
   toggleMenu() {
-    if(this.isMobile){
+    if (this.isMobile) {
       this.sidenav.toggle();
       this.isCollapsed = false;
     } else {
@@ -101,8 +110,9 @@ export class AppComponent{
     }
   }
 
-  LogOut(){
+  LogOut() {
     localStorage.removeItem('currentUserToken');
+    localStorage.removeItem('loggedInUserId');
     this.router.navigate(['login']);
   }
 }

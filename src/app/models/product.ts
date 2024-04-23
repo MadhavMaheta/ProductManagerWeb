@@ -7,3 +7,9 @@ export interface Products{
     categoryId:number;
     imageData?:any;
 }
+
+
+export interface ProductCheckoutData{
+    productId : number;
+    productQuantity : number;
+}

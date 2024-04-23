@@ -27,6 +27,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoaderInterceptorInterceptor } from './interceptor/loader-interceptor.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { ProductDetailComponent } from './modules/components/product-detail/product-detail.component';
+import { OrderCheckoutComponent } from './modules/components/order-checkout/order-checkout.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     RegisterComponent,
     ConfirmationDialogComponent,
     AlertDialogComponent,
-    MyAccountComponent
+    MyAccountComponent,
+    ProductDetailComponent,
+    OrderCheckoutComponent,
   ],
   imports: [
     BrowserModule,

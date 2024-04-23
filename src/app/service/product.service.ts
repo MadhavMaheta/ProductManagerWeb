@@ -14,7 +14,6 @@ export class ProductService {
   readonly token = localStorage.getItem('currentUserToken');
 
   GetProducts() {
-    debugger;
     const httpOptions = { headers: new HttpHeaders({'Authorization':'Bearer ' + this.token }) };
     return this.http.get<Products[]>(this.rootURL + 'Products/GetProducts',httpOptions);
   }

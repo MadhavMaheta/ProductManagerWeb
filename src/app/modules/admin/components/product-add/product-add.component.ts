@@ -36,7 +36,6 @@ export class ProductAddComponent implements OnInit {
     public categoryService: CategoryService, private dialog: MatDialog, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
-
     this._Activatedroute.paramMap.subscribe(params => {
       this.id = Number(params.get('id'));
     });
