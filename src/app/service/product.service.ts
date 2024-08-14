@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Products } from '../models/product';
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Filter } from '../models/filter';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,11 @@ export class ProductService {
   GetProducts() {
     const httpOptions = { headers: new HttpHeaders({'Authorization':'Bearer ' + this.token }) };
     return this.http.get<Products[]>(this.rootURL + 'Products/GetProducts',httpOptions);
+  }
+
+  GetProductsList(filter : Filter) {
+    const httpOptions = { headers: new HttpHeaders({'Authorization':'Bearer ' + this.token }) };
+    return this.http.post<Products[]>(this.rootURL + 'Products/GetProductList', filter,httpOptions);
   }
 
   GetProductsWithImage() { 

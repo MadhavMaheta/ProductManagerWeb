@@ -29,6 +29,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ProductDetailComponent } from './modules/components/product-detail/product-detail.component';
 import { OrderCheckoutComponent } from './modules/components/order-checkout/order-checkout.component';
+import { PageNotFoundComponent } from './modules/components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { OrderCheckoutComponent } from './modules/components/order-checkout/orde
     MyAccountComponent,
     ProductDetailComponent,
     OrderCheckoutComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

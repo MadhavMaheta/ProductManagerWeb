@@ -40,8 +40,11 @@ export class RegisterComponent implements OnInit {
 
     this.authService.Register(objRegister).subscribe(res => {
       this.registerFormGroup.reset();
+      for (let name in this.registerFormGroup.controls) {
+        this.registerFormGroup.controls[name].setErrors(null);
+      }
       this.openAlertDialog("Registered successfully","OK");
-    }, err => { console.log(err); });
+    }, err => { debugger; this.openAlertDialog(err.error ,"OK"); console.log(err); });
   }
 
   openAlertDialog(message : string, buttonText: string) {
@@ -55,8 +58,7 @@ export class RegisterComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      debugger;
-      if (result === 'close') {
+      if (message == "Registered successfully" && result === 'close') {
         this.router.navigate(['login']);
       }
     });

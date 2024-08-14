@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Products } from 'src/app/models/product';
 import { ProductService } from 'src/app/service/product.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-product-detail',
@@ -26,7 +27,7 @@ export class ProductDetailComponent implements OnInit {
   subscription: Subscription;
   
   constructor(private _Activatedroute: ActivatedRoute, public productService: ProductService,private sanitizer: DomSanitizer,
-    private router: Router) { }
+    private router: Router, private location: Location) { }
 
   ngOnInit(): void {
     this._Activatedroute.paramMap.subscribe(params => {
@@ -74,5 +75,9 @@ export class ProductDetailComponent implements OnInit {
     localStorage.setItem("productId",this.productId.toString());
     localStorage.setItem("productQuantity",this.quantityCount.toString());
     this.router.navigate(['checkout']);
+  }
+  GoToBackPage()
+  {
+    this.location.back();
   }
 }

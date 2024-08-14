@@ -14,13 +14,19 @@ import {MatProgressSpinnerModule }  from '@angular/material/progress-spinner';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
+import { FilterPanelComponent } from './filter-panel/filter-panel.component';
+import { MultiSelectDropdownComponent } from './multi-select-dropdown/multi-select-dropdown.component';
+import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     SidebarComponent,
     MatTableCommonComponent,
-    NavbarComponent
+    NavbarComponent,
+    FilterPanelComponent,
+    MultiSelectDropdownComponent
   ],
   imports: [
     CommonModule,
@@ -34,12 +40,15 @@ import { NavbarComponent } from './navbar/navbar.component';
     MatSortModule,
     MatPaginatorModule,
     RouterModule,
-    MatProgressSpinnerModule
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    ReactiveFormsModule
   ],
   exports:[
     SidebarComponent,
     MatTableCommonComponent,
-    NavbarComponent
+    NavbarComponent,
+    FilterPanelComponent
   ]
 })
 export class SharedModule { }

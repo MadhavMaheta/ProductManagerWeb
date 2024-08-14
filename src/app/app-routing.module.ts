@@ -9,6 +9,7 @@ import { RegisterComponent } from './modules/auth/register/register.component';
 import { MyAccountComponent } from './modules/components/my-account/my-account.component';
 import { ProductDetailComponent } from './modules/components/product-detail/product-detail.component';
 import { OrderCheckoutComponent } from './modules/components/order-checkout/order-checkout.component';
+import { PageNotFoundComponent } from './modules/components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { 
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'checkout', component: OrderCheckoutComponent },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({

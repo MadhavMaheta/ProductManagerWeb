@@ -4,8 +4,8 @@ import { ProductService } from 'src/app/service/product.service';
 import { Order, OrderItem } from 'src/app/models/order';
 import { OrderService } from 'src/app/service/order.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationDialogComponent } from 'src/app/layout/confirmation-dialog/confirmation-dialog.component';
 import { AlertDialogComponent } from 'src/app/layout/alert-dialog/alert-dialog.component';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-order-checkout',
@@ -13,7 +13,7 @@ import { AlertDialogComponent } from 'src/app/layout/alert-dialog/alert-dialog.c
   styleUrls: ['./order-checkout.component.css']
 })
 export class OrderCheckoutComponent implements OnInit {
-  constructor(private productService : ProductService,private orderService : OrderService, private dialog: MatDialog) { }
+  constructor(private productService : ProductService,private orderService : OrderService, private dialog: MatDialog, private location: Location) { }
   totalPrice : number = 0;
   productQuantity : number = 0;
   product : Products = {
@@ -68,5 +68,9 @@ export class OrderCheckoutComponent implements OnInit {
         }
       },
     });
+  }
+  GoToBackPage()
+  {
+    this.location.back();
   }
 }
