@@ -30,6 +30,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { ProductDetailComponent } from './modules/components/product-detail/product-detail.component';
 import { OrderCheckoutComponent } from './modules/components/order-checkout/order-checkout.component';
 import { PageNotFoundComponent } from './modules/components/page-not-found/page-not-found.component';
+import { PriceTrackerDirective } from './directive/price-tracker.directive';
+import { CurrencyPipe } from './pipes/currency.pipe';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,8 @@ import { PageNotFoundComponent } from './modules/components/page-not-found/page-
     ProductDetailComponent,
     OrderCheckoutComponent,
     PageNotFoundComponent,
+    PriceTrackerDirective,
+    CurrencyPipe,
   ],
   imports: [
     BrowserModule,
@@ -62,7 +67,8 @@ import { PageNotFoundComponent } from './modules/components/page-not-found/page-
     MaterialModule,
     SharedModule,
     MatProgressSpinnerModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },

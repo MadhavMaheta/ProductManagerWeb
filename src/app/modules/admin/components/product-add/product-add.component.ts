@@ -9,6 +9,7 @@ import { CategoryService } from 'src/app/service/category.service';
 import { Category } from 'src/app/models/category';
 import { AlertDialogComponent } from 'src/app/layout/alert-dialog/alert-dialog.component';
 import { DomSanitizer } from '@angular/platform-browser';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-add',
@@ -32,8 +33,15 @@ export class ProductAddComponent implements OnInit {
   };
   categoriesList: Category[];
   
-  constructor(private _Activatedroute: ActivatedRoute, public productService: ProductService, private formBuilder: FormBuilder,
-    public categoryService: CategoryService, private dialog: MatDialog, private sanitizer: DomSanitizer) { }
+  constructor(
+    private _Activatedroute: ActivatedRoute,
+    public productService: ProductService, 
+    private formBuilder: FormBuilder,
+    public categoryService: CategoryService, 
+    private dialog: MatDialog, 
+    private sanitizer: DomSanitizer,
+    private tostr : ToastrService,
+  ) { }
 
   ngOnInit(): void {
     this._Activatedroute.paramMap.subscribe(params => {
@@ -105,13 +113,13 @@ export class ProductAddComponent implements OnInit {
 
         if (objProduct.ID > 0) {
           this.productService.EditProduct(objProduct).subscribe(res => {
-            this.openAlertDialog("Product edited successfully","OK");
+            this.tostr.success("Product edited successfully","Success");
             this.GetProductById(this.id);
           }, err => { console.log(err) });
         }
         else {
           this.productService.AddProduct(objProduct).subscribe(res => {
-            this.openAlertDialog("Product added successfully","OK");
+            this.tostr.success("Product added successfully","Success");
             this.GetProductById(res.id);
           }, err => { console.log(err) });
         }

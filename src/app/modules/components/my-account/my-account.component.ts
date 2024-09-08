@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { MustMatch } from 'src/app/functions/fieldMatchValidator';
+import { passwordStrengthValidator } from 'src/app/functions/passwordStrengthValidator';
 import { ChangePassword } from 'src/app/models/changePassword';
 import { User } from 'src/app/models/user';
 import { AccountService } from 'src/app/service/account.service';
@@ -36,10 +38,13 @@ export class MyAccountComponent implements OnInit {
     this.changePasswordGroup = this.formBuilder.group(
       {
         cpId: [this.id],
-        newPassword: ['', Validators.required],
+        newPassword: ['', [Validators.required, passwordStrengthValidator()]],
         confrimNewPassword: ['', Validators.required],
-        oldPassword: ['', Validators.required]
-      });
+        oldPassword: ['', Validators.required],
+      },
+      {
+        validator: MustMatch('newPassword', 'confrimNewPassword')
+    });
   }
 
   BindAccountData() {
@@ -69,6 +74,10 @@ export class MyAccountComponent implements OnInit {
   }
 
   ChangePassword() {
+    if (this.changePasswordGroup.invalid) {
+      return;
+    }
+
     const objPassword: ChangePassword = {
       userId: this.changePasswordGroup.value.id,
       confrimPassword: this.changePasswordGroup.value.confrimNewPassword

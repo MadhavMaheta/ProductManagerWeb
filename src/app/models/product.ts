@@ -3,6 +3,7 @@ export interface Products{
     name:string;
     description: string;
     price:number;
+    currencyPrice?:string;
     inStock:boolean;
     categoryId:number;
     imageData?:any;

@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { CategoryService } from 'src/app/service/category.service';
 import { Category } from 'src/app/models/category';
 import { Filter } from 'src/app/models/filter';
+import { CurrencyPipe, DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-list',
@@ -37,6 +38,7 @@ export class ProductListComponent {
 
   constructor(public productService: ProductService,
     public categoryService: CategoryService,
+    private currencyPipe: CurrencyPipe,
     private router: Router) {
     
       this.GetCategories();
@@ -46,7 +48,7 @@ export class ProductListComponent {
       { columnDef: 'id', header: 'Id', cell: (element: Products) => `${element.id}` },
       { columnDef: 'name', header: 'Name', cell: (element: Products) => `${element.name}` },
       { columnDef: 'description', header: 'Description', cell: (element: Products) => `${element.description}` },
-      { columnDef: 'price', header: 'Price', cell: (element: Products) => `${element.price}` },
+      { columnDef: 'price', header: 'Price', cell: (element: Products) => `${element.currencyPrice}` },
       { columnDef: 'inStock', header: 'InStock', cell: (element: Products) => `${element.inStock}` },
     ];
 
@@ -58,16 +60,27 @@ export class ProductListComponent {
 
   async GetProducts() {
     this.productService.GetProducts().subscribe(
-      res => { debugger; this.products = res as Products[]; this.dataSource = new MatTableDataSource(res as Products[]); this.dataSource.paginator = this.paginator; },
-      error => { console.log(error); });
+      res => 
+        { 
+          this.products = res as Products[]; 
+          this.ProcessProductData();
+          this.dataSource = new MatTableDataSource(res as Products[]); 
+          this.dataSource.paginator = this.paginator; 
+        },
+        error => { console.log(error); });
   }
 
   async GetProductsList(filter : Filter) {
     this.productService.GetProductsList(filter).subscribe(
-      res => { debugger; this.products = res as Products[]; this.dataSource = new MatTableDataSource(res as Products[]); this.dataSource.paginator = this.paginator; },
-      error => { console.log(error); });
+      res => 
+        { 
+          this.products = res as Products[];
+          this.ProcessProductData();
+          this.dataSource = new MatTableDataSource(res as Products[]); 
+          this.dataSource.paginator = this.paginator;
+        },
+        error => { console.log(error); });
   }
-
 
   async GetCategories() {
     this.categoryService.GetCategories().subscribe(
@@ -83,7 +96,7 @@ export class ProductListComponent {
       this.router.navigate(['products/edit', result[1]]);
     }
   }
-
+  
   pageEventGenericTable(result: PageEvent) {
     this.pageSize = result.pageSize;
     this.currentPage = result.pageIndex;
@@ -95,7 +108,16 @@ export class ProductListComponent {
     var filter = {
       categories : result,
     };
-
+    
     this.GetProductsList(filter);
+  }
+
+  ProcessProductData()
+  {
+    this.products = this.products.map(item => ({
+      ...item,
+      currencyPrice: this.currencyPipe.transform(item.price , 'Rs.') ?? ''
+    }));
+
   }
 }

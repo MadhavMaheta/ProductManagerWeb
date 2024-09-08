@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe, DecimalPipe } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { MatTableModule } from '@angular/material/table';
@@ -39,6 +39,7 @@ import { CategoryListComponent } from './components/category-list/category-list.
     MatSelectModule,
     ReactiveFormsModule,
     SharedModule
-  ]
+  ],
+  providers : [DecimalPipe, CurrencyPipe]
 })
 export class AdminModule { }

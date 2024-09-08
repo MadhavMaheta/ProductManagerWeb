@@ -1,10 +1,10 @@
 <div class="row mt-2" style="margin-left: 2px;">
     <div class="col-md-2" id="productItem" *ngFor="let item of products">
-        <mat-card (click)="RouteToProductDetail(item.id)">
-            <mat-card-content> <img *ngIf="item.imageData != null" height="180px" width="180px" [src]="item.imageData" alt="/assets/AlterImage.jpg" /></mat-card-content>  
-            <mat-card-content> <img *ngIf="item.imageData == null" height="180px" width="180px" src="/assets/AlterImage.jpg" /></mat-card-content>  
-            <mat-card-footer>{{item.name}}</mat-card-footer>
+        <mat-card class="highlight-card" (click)="RouteToProductDetail(item.id)">
+            <mat-card-content *ngIf="item.imageData != null"> <img height="180px" width="180px" [src]="item.imageData" alt="Preview not available" /></mat-card-content>  
+            <mat-card-content *ngIf="item.imageData == null"> <img height="180px" width="180px" src="../../../../assets/AlterImage.jpg" /></mat-card-content>  
+            <mat-card-footer class="text-center">{{item.name}}</mat-card-footer>
         </mat-card>
         <br/>
     </div>  
-</div>  
+</div>

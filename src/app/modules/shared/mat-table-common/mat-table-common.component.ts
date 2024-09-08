@@ -5,7 +5,6 @@ import {MatTableDataSource} from '@angular/material/table';
 import { TableColumn } from 'src/app/models/table-column';
 import { TableButton } from 'src/app/models/table-button';
 
-
 @Component({
   selector: 'app-mat-table-common',
   templateUrl: './mat-table-common.component.html',
@@ -23,6 +22,7 @@ export class MatTableCommonComponent implements OnChanges {
   @Output() filteredData = new EventEmitter<any[]>();
   @Output() buttonClick = new EventEmitter<string[]>();
   @Output() pageEventGenericTable = new EventEmitter<PageEvent>();
+  @Input() columnPipes: { [key: string]: any } = {};
 
   dataSource: MatTableDataSource<any>;
   displayedColumns: string[];

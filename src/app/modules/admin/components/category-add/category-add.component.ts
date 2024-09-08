@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialogConfig, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/layout/confirmation-dialog/confirmation-dialog.component';
 import { AlertDialogComponent } from 'src/app/layout/alert-dialog/alert-dialog.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-category-add',
@@ -22,8 +23,13 @@ export class CategoryAddComponent implements OnInit {
     description: '',
     name: '',
   };
-  constructor(private _Activatedroute: ActivatedRoute, public categoryService: CategoryService,
-    private formBuilder: FormBuilder, private dialog: MatDialog) { }
+  constructor(
+    private _Activatedroute: ActivatedRoute, 
+    public categoryService: CategoryService,
+    private formBuilder: FormBuilder,
+    private dialog: MatDialog,
+    private tostr : ToastrService,
+  ) { }
 
   ngOnInit(): void {
 
@@ -70,13 +76,13 @@ export class CategoryAddComponent implements OnInit {
 
         if (objCategory.ID > 0) {
           this.categoryService.EditCategory(objCategory).subscribe(res => {
-            this.openAlertDialog("Category edited successfully","OK");
+            this.tostr.success("Category edited successfully","Success");
             this.GetCategoryById(objCategory.ID);
           }, err => { console.log(err) });
         }
         else {
           this.categoryService.AddCategory(objCategory).subscribe(res => {
-            this.openAlertDialog("Category added successfully","OK");
+            this.tostr.success("Category added successfully","Success");
             this.GetCategoryById(res.id);
           }, err => { console.log(err) });
         }

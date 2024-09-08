@@ -12,7 +12,7 @@ import { MatListModule } from '@angular/material/list';
 import {MatSortModule} from '@angular/material/sort';
 import {MatProgressSpinnerModule }  from '@angular/material/progress-spinner';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { RouterModule } from '@angular/router';
+import { RouterLinkActive, RouterModule } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FilterPanelComponent } from './filter-panel/filter-panel.component';
 import { MultiSelectDropdownComponent } from './multi-select-dropdown/multi-select-dropdown.component';
@@ -40,6 +40,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSortModule,
     MatPaginatorModule,
     RouterModule,
+    RouterLinkActive,
     MatSelectModule,
     MatProgressSpinnerModule,
     ReactiveFormsModule

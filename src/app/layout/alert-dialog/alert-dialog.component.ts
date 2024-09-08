@@ -10,6 +10,7 @@ export class AlertDialogComponent {
 
   message: string = ""
   cancelButtonText = "Ok"
+  
   constructor(
     @Inject(MAT_DIALOG_DATA) private data: any,
     private dialogRef: MatDialogRef<AlertDialogComponent>) {

@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first, map } from 'rxjs';
 import { Login } from 'src/app/models/login';
 import { AuthService } from 'src/app/service/auth.service';
-import { MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { AlertDialogComponent } from 'src/app/layout/alert-dialog/alert-dialog.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,9 @@ export class LoginComponent implements OnInit {
     name: '',
     password: ''
   };
-  constructor(public authService: AuthService, private formBuilder: FormBuilder,private router: Router,private dialog: MatDialog) { }
+  isRememberMe = false;
+
+  constructor(public authService: AuthService, private formBuilder: FormBuilder, private router: Router, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.loginFormGroup = this.formBuilder.group(
@@ -30,6 +33,14 @@ export class LoginComponent implements OnInit {
         name: ['', Validators.required],
         password: ['', Validators.required]
       });
+
+    if (localStorage.getItem('UserName') != null && localStorage.getItem('Password') != null) {
+      this.loginFormGroup.patchValue({
+        name : localStorage.getItem('UserName'),
+        password : localStorage.getItem('Password')
+      });
+      this.isRememberMe = true;
+    }
   }
 
   Login() {
@@ -39,29 +50,44 @@ export class LoginComponent implements OnInit {
     }
 
     var objCategory = {
-      id:0,
+      id: 0,
       username: this.loginFormGroup.value.name,
       password: this.loginFormGroup.value.password,
-      role:"Admin",
-      roleId:0
+      role: "Admin",
+      roleId: 0
     };
 
     this.authService.Login(objCategory).subscribe(res => {
       localStorage.setItem('currentUserToken', res.jwtToken);
       localStorage.setItem('loggedInUserId', res.userId.toString());
       localStorage.setItem('loggedInUserRole', res.roleName);
+
+      if (this.isRememberMe) {
+        localStorage.setItem('UserName', objCategory.username);
+        localStorage.setItem('Password', objCategory.password);
+      }
+      else
+      {
+        localStorage.removeItem('UserName');
+        localStorage.removeItem('Password');
+      }
+
       this.router.navigate(['']);
-    }, err => { this.openAlertDialog("User name or password incorrect","Close"); });
+    }, err => { this.openAlertDialog("User name or password are incorrect", "Close"); });
   }
 
-  openAlertDialog(message : string, buttonText: string) {
-    const dialogRef = this.dialog.open(AlertDialogComponent,{
-      data:{
+  openAlertDialog(message: string, buttonText: string) {
+    const dialogRef = this.dialog.open(AlertDialogComponent, {
+      data: {
         message: message,
         buttonText: {
           cancel: buttonText
         }
       },
     });
+  }
+
+  rememberMe(isRememberMe: boolean): void {
+    this.isRememberMe = isRememberMe;
   }
 }

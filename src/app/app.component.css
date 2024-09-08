@@ -102,3 +102,8 @@ mat-sidenav-content{
 .example-spacer {
   flex: 1 1 auto;
 }
+.active-link {
+  z-index: 10000;
+  background-color: #673ab7;
+  color: #fff;
+}
